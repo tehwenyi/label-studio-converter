@@ -9,21 +9,21 @@
 
 1. **Clone the Repository and Install the Converter:**
 
-  ```bash
-  git clone https://github.com/tehwenyi/label-studio-converter.git
-  cd label-studio-converter
-  pip install -e .
-  ```
+   ```bash
+   git clone https://github.com/tehwenyi/label-studio-converter.git
+   cd label-studio-converter
+   pip install -e .
+   ```
 
 1. **Verify Installation:** To ensure that the converter is correctly installed, run the following command to display the help message:
 
-  ```bash
-  label-studio-converter import coco -h
-  ```
+   ```bash
+   label-studio-converter import coco -h
+   ```
 
 1. **Convert COCO to Label Studio Format:**
 
-  You have two options for converting COCO annotations to Label Studio JSON format:
+   You have two options for converting COCO annotations to Label Studio JSON format:
 
 - Option 1: Edit the variables in the provided bash script and run it:
 
