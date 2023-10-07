@@ -111,7 +111,7 @@ def convert_coco_to_ls(
     to_name='image',
     from_name='label',
     out_type="annotations",
-    image_root_url='/data/local-files/?d=',
+    image_root_url='/data/local-files/?d=images/',
     use_super_categories=False,
     point_width=1.0,
 ):
@@ -205,38 +205,47 @@ def convert_coco_to_ls(
         task = tasks[image_id]
 
         if 'bbox' in annotation:
-            item = create_bbox(
-                annotation,
-                categories,
-                rectangles_from_name,
-                image_height,
-                image_width,
-                to_name,
-            )
-            task[out_type][0]['result'].append(item)
+            try:
+                item = create_bbox(
+                    annotation,
+                    categories,
+                    rectangles_from_name,
+                    image_height,
+                    image_width,
+                    to_name,
+                )
+                task[out_type][0]['result'].append(item)
+            except IndexError:
+                print("WARNING: No bbox data found. The bbox annotation will be skipped.")
 
         if 'segmentation' in annotation:
-            item = create_segmentation(
-                annotation,
-                categories,
-                segmentation_from_name,
-                image_height,
-                image_width,
-                to_name,
-            )
-            task[out_type][0]['result'].append(item)
+            try:
+                item = create_segmentation(
+                    annotation,
+                    categories,
+                    segmentation_from_name,
+                    image_height,
+                    image_width,
+                    to_name,
+                )
+                task[out_type][0]['result'].append(item)
+            except IndexError:
+                print("WARNING: No segmentation data found. The segmentation annotation will be skipped.")
 
         if 'keypoints' in annotation:
-            items = create_keypoints(
-                annotation,
-                categories,
-                keypoints_from_name,
-                to_name,
-                image_height,
-                image_width,
-                point_width,
-            )
-            task[out_type][0]['result'] += items
+            try:
+                items = create_keypoints(
+                    annotation,
+                    categories,
+                    keypoints_from_name,
+                    to_name,
+                    image_height,
+                    image_width,
+                    point_width,
+                )
+                task[out_type][0]['result'] += items
+            except IndexError:
+                print("WARNING: No keypoints data found. The keypoints annotation will be skipped.")
 
         tasks[image_id] = task
 
