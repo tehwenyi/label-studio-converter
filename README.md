@@ -1,3 +1,43 @@
+## Quick Start (Conversion from COCO Annotation to Label Studio JSON Format)
+
+1. **Prerequisites**: Before you begin, make sure you have a virtual environment set up. You can create one using Conda, for example:
+
+   ```bash
+   conda create -n ls-converter python=3.10
+   conda activate ls-converter
+   ```
+
+1. **Clone the Repository and Install the Converter:**
+
+  ```bash
+  git clone https://github.com/tehwenyi/label-studio-converter.git
+  cd label-studio-converter
+  pip install -e .
+  ```
+
+1. **Verify Installation:** To ensure that the converter is correctly installed, run the following command to display the help message:
+
+  ```bash
+  label-studio-converter import coco -h
+  ```
+
+1. **Convert COCO to Label Studio Format:**
+
+  You have two options for converting COCO annotations to Label Studio JSON format:
+
+- Option 1: Edit the variables in the provided bash script and run it:
+
+  ```bash
+  sh run_coco_to_ls.sh
+  ```
+- Option 2: Use the following command, replacing the placeholders with your specific paths and URLs:
+
+  ```bash
+  label-studio-converter import coco -i /path/to/input.json -o /path/to/output.json --image-root-url /data/local-files/?d=images/
+  ```
+
+For more advanced usage and additional examples, you can refer to the sections below.
+
 # Label Studio Converter
 
 [Website](https://labelstud.io/) • [Docs](https://labelstud.io/guide) • [Twitter](https://twitter.com/heartexlabs) • [Join Slack Community <img src="https://app.heartex.ai/docs/images/slack-mini.png" width="18px"/>](https://slack.labelstud.io)
